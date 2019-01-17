@@ -1,0 +1,53 @@
+mysql> create database vacation
+mysql vacation < vacation.sql
+
+mysql> select guestname, guestaddress from guest where guestaddress like "%London" order by guestname asc;
++--------------+--------------------+
+| guestname    | guestaddress       |
++--------------+--------------------+
+| John Kay     | 56 High St, London |
+| Mike Ritchie | 18 Tain St, London |
++--------------+--------------------+
+
+mysql> select roomno, type, price from room where type != "single" and  price < 40 order by price asc;
++--------+--------+-------+
+| roomno | type   | price |
++--------+--------+-------+
+|    801 | double | 15.00 |
+|    601 | double | 29.00 |
+|   1001 | double | 30.00 |
+|   1101 | family | 35.00 |
+|    701 | family | 39.00 |
++--------+--------+-------+
+
+mysql> select * from booking where dateto is NULL;
++---------+---------+------------+--------+--------+
+| hotelno | guestno | datefrom   | dateto | roomno |
++---------+---------+------------+--------+--------+
+| ch01    |   10006 | 2019-04-21 | NULL   |   1101 |
+| dc01    |   10003 | 2019-05-20 | NULL   |   1001 |
+| fb01    |   10001 | 2019-05-01 | NULL   |    701 |
++---------+---------+------------+--------+--------+
+
+mysql> select avg(price) from room;
++------------+
+| avg(price) |
++------------+
+|  35.748333 |
++------------+
+
+mysql> select sum(price) from room  where type = 'double';
++------------+
+| sum(price) |
++------------+
+|     160.00 |
++------------+
+
+mysql> SELECT * FROM booking WHERE YEAR(dateto)-YEAR(datefrom) >= 1 OR (MONTH(datefrom) <= 8 AND MONTH(dateto) >= 8);
++---------+---------+------------+------------+--------+
+| hotelno | guestno | datefrom   | dateto     | roomno |
++---------+---------+------------+------------+--------+
+| fb02    |   10003 | 2019-04-05 | 2020-04-04 |   1001 |
+| fb02    |   10005 | 2019-05-12 | 2030-05-04 |   1101 |
++---------+---------+------------+------------+--------+
+
