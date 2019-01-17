@@ -1,0 +1,15 @@
+In one terminal -> $ mongod (server)
+In another terminal or tab -> $ mongo -> exit
+$ mongoimport --db exercise9 --collection beers --file beers.json
+
+Open Robo3T
+
+db.beers.count()
+db.beers.find().limit(5)
+db.beers.count({type:"blond troebel"})
+db.beers.find({type:"blond troebel"})
+db.beers.count({alcoholpercentage: {$gt: 8}})
+db.beers.count({type:"alcoholarm"})
+db.beers.find({type:"alcoholarm"})
+db.beers.find({alcoholpercentage: {$gt: 8}})
+db.beers.aggregate([{$group:{_id: {brewery:"$brewery"}}}])
