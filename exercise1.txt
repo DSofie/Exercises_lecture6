@@ -1,0 +1,9 @@
+$ mkdir exercises
+$ cd exercises/
+$ git init
+$ gedit text.txt &
+$ git add text.txt 
+$ git status
+$ git commit -m "File commited"
+$ git remote add origin https://github.com/DSofie/Exercises_lecture6.git
+$ git push -u origin master
