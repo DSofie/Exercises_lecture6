@@ -1,0 +1,24 @@
+Copy columns
+UNF   D(staffNo, dentistName, patientNo, patientName, appointment, surgeryNo)
+
+Determine keys and repeating groups
+1NF   D(staffNo, apptDate, apptTime, dentistName, patientNo, patientName, surgeryNo)
+
+      CANDIDATE-KEYS(staffNo, apttDate, apptTime)
+
+
+2NF   Appointment(staffNo, apttDate, apptTime, patientNo, patientName)
+      Surgery(staffNo, apptDate, surgeryNo)
+      Dentist(staffNo, dentistName)
+   
+      CANDIDATE-KEYS(staffNo, apptDate, apptTime - staffNo, apptDate - staffNo)
+
+No transitory dependencies
+3NF   Dentist(staffNo, dentistName)
+      Surgery(staffNo, apptDate, surgeryNo)
+      Patient(patientNo, patientName)
+      Appointment(staffNo, apptDate, apptTime, patientNo)
+      
+      CANDIDATE-KEYS(staffNo - staffNo, apptDate - patientNo - staffNo, apptDate, apptTime)
+   
+BCNF  3NF
